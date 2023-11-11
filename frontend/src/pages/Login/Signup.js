@@ -1,8 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import {useCreateUserWithEmailAndPassword} from 'react-firebase-hooks/auth'
+import {useCreateUserWithEmailAndPassword , useSignInWithGoogle} from 'react-firebase-hooks/auth'
 import  auth  from '../../firebase.init';
+import GoogleButton from 'react-google-button'
+import './Signup.css'
+import { Link, colors } from '@mui/material';
 
 function Signup() {
 
@@ -17,12 +20,21 @@ function Signup() {
         error,
       ] = useCreateUserWithEmailAndPassword(auth);
 
+      const [signInWithMicrosoft, googleuser, googleloading, googleError] = useSignInWithGoogle(auth);
+
+   if(user|| googleuser){
     console.log(user)
+    console.log(googleuser)
+   }
 
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(email,password)
    await createUserWithEmailAndPassword(email,password);
+  }
+
+  const handleGoogleSignIn = () => {
+     signInWithMicrosoft();
   }
 
   return (
@@ -31,7 +43,7 @@ function Signup() {
        <img src='https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHdpdHRlcnxlbnwwfHwwfHx8MA%3D%3D'></img>
     </div>
     <div className='form-container'>
-       <TwitterIcon/>
+       <TwitterIcon style={{color:'skyblue'}}/>
       <form onSubmit={handleSubmit}>
          <input 
          type='text'
@@ -64,6 +76,20 @@ function Signup() {
            <button type='Submit' className='btn'>Signup</button>
          </div>
       </form>
+      <hr/>
+      <div className='google-button'>
+        <GoogleButton
+          className='g-btn'
+          type='light'
+          onClick={()=>handleGoogleSignIn()}
+        />
+      </div>
+      <div>
+        Already have account?
+        <Link to='/login'>
+         Login
+        </Link>
+      </div>
     </div>
   </div>
 

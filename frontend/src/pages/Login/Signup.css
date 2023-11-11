@@ -1,0 +1,99 @@
+/* Add a CSS reset to remove default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .image-container {
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .form-container {
+    flex: 1;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 20px;
+  }
+  
+  .form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .display-name,
+  .email,
+  .password {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    margin-top: 10px;
+    transition: border-color 0.3s;
+  }
+  
+  .display-name:focus,
+  .email:focus,
+  .password:focus {
+    outline: none;
+    border-color: #1da1f2;
+  }
+  
+  .btn-login {
+    margin-top: 30px;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #1da1f2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #0d8bf9;
+  }
+  
+  hr {
+    margin: 20px 0;
+    border: 0.5px solid #ccc;
+  }
+  
+  .google-btn {
+    text-align: center;
+  }
+  
+  /* Add more styling as needed */
+  
