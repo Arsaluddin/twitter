@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import {useSignInWithEmailAndPassword, useSignInWithGoogle} from 'react-firebase-hooks/auth'
-import  auth  from '../../firebase.init';
+import  auth  from '../../context/firebase.init';
 import {GoogleButton} from 'react-google-button'
 import { Link ,useNavigate} from 'react-router-dom';
 import './Login.css'
