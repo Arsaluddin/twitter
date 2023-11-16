@@ -1,99 +1,150 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useUserAuth } from "../../context/UserAuthContext";
+import twitterimg from "../../image/twitter.jpeg";
 import TwitterIcon from '@mui/icons-material/Twitter';
-import {useCreateUserWithEmailAndPassword , useSignInWithGoogle} from 'react-firebase-hooks/auth'
-import  auth  from '../../context/firebase.init';
-import GoogleButton from 'react-google-button'
-import './Signup.css'
-import { Link, colors } from '@mui/material';
+import GoogleButton from "react-google-button";
+import "./Login.css"
 
-function Signup() {
 
-    const [password,setPassword] = useState('');
-    const [username, setUsername] = useState('')
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [
-        createUserWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+const Signup = () => {
+    const [username, setUsername] = useState(" ");
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+    const [password, setPassword] = useState("");
+    const { signUp } = useUserAuth();
+    const { googleSignIn } = useUserAuth();
+    let navigate = useNavigate();
 
-      const [signInWithMicrosoft, googleuser, googleloading, googleError] = useSignInWithGoogle(auth);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError("");
+        try {
+            await signUp(email, password);
+            const user = {
+                username: username,
+                name: name,
+                email: email,
+            }
 
-   if(user|| googleuser){
-    console.log(user)
-    console.log(googleuser)
-   }
+            fetch('https://pacific-peak-30751.herokuapp.com/register', {
+                method: "POST",
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(user),
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.acknowledged) {
+                        console.log(data)
+                        navigate('/')
+                    }
+                })
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    console.log(email,password)
-   await createUserWithEmailAndPassword(email,password);
-  }
+        } catch (err) {
+            setError(err.message);
+            window.alert(err.message);
+        }
+    };
 
-  const handleGoogleSignIn = () => {
-     signInWithMicrosoft();
-  }
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault();
+        try {
+            await googleSignIn();
+            navigate("/");
+        } catch (error) {
+            console.log(error.message);
+            console.log(error);
+        }
+    };
 
-  return (
-    <div className='login-container'>
-    <div className='image-container'>
-       <img src='https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHdpdHRlcnxlbnwwfHwwfHx8MA%3D%3D'></img>
-    </div>
-    <div className='form-container'>
-       <TwitterIcon style={{color:'skyblue'}}/>
-      <form onSubmit={handleSubmit}>
-         <input 
-         type='text'
-         className='display-name'
-         placeholder='Username'
-         onChange={(e) => setUsername(e.target.value)}
-         >
-         </input>
-         <input 
-         type='text'
-         className='display-name'
-         placeholder='Name'
-         onChange={(e) => setName(e.target.value)}
-         >
-         </input>
-         <input 
-         type='email'
-         className='email'
-         placeholder='Email'
-         onChange={(e) => setEmail(e.target.value)}
-         >
-         </input>
-         <input 
-         type='password'
-         className='password'
-         placeholder='password'
-         onChange={(e) => setPassword(e.target.value)}
-         ></input>
-         <div className='btn-login'>
-           <button type='Submit' className='btn'>Signup</button>
-         </div>
-      </form>
-      <hr/>
-      <div className='google-button'>
-        <GoogleButton
-          className='g-btn'
-          type='light'
-          onClick={()=>handleGoogleSignIn()}
-        />
-      </div>
-      <div>
-        Already have account?
-        <Link to='/login'>
-         Login
-        </Link>
-      </div>
-    </div>
-  </div>
+    return (
 
-  )
-}
+        <>
+            <div className="login-container">
 
-export default Signup
+                <div className="image-container">
+                    <img className="image" src={twitterimg} alt="twitterImage" />
+                </div>
+
+
+                <div className="form-container">
+                    <div className="">
+                        <TwitterIcon className="Twittericon" style={{ color: "skyblue" }} />
+
+                        <h2 className="heading">Happening now</h2>
+
+                        <div class="d-flex align-items-sm-center">
+                            <h3 className="heading1"> Join twitter today </h3>
+                        </div>
+
+
+                        {error && <p className="errorMessage">{error}</p>}
+                        <form onSubmit={handleSubmit}>
+
+                            <input className="display-name" style={{ backgroudColor: "red" }}
+                                type="username"
+                                placeholder="@username "
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+
+                            <input className="display-name" style={{ backgroudColor: "red" }}
+                                type="name"
+                                placeholder="Enter Full Name"
+                                onChange={(e) => setName(e.target.value)}
+                            />
+
+                            <input className="email"
+                                type="email"
+                                placeholder="Email address"
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+
+
+
+                            <input className="password"
+                                type="password"
+                                placeholder="Password"
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+
+
+                            <div className="btn-login">
+                                <button type="submit" className="btn">Sign Up</button>
+                            </div>
+                        </form>
+                        <hr />
+                        <div className="google-button">
+                            <GoogleButton
+
+                                className="g-btn"
+                                type="light"
+
+                                onClick={handleGoogleSignIn}
+                            />
+                        </div>
+                        <div>
+                            Already have an account?
+                            <Link
+                                to="/login"
+                                style={{
+                                    textDecoration: 'none',
+                                    color: 'var(--twitter-color)',
+                                    fontWeight: '600',
+                                    marginLeft: '5px'
+                                }}
+                            >
+                                Log In
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </>
+    );
+};
+
+export default Signup;

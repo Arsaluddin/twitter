@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
+import "./Post.css";
 import { Avatar } from "@mui/material";
-
-
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser"
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PublishIcon from "@mui/icons-material/Publish";
+
 
 function Post({ p }) {
   const { name, username, photo, post, profilePhoto } = p
@@ -39,5 +39,6 @@ function Post({ p }) {
     </div>
   );
 }
+
 
 export default Post;
