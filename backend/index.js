@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { configDotenv } = require('dotenv');
 const app = express();
 const port = process.env.PORT || 5000;
-
+configDotenv()
 app.use(cors());
 app.use(express.json());
 
-const uri = 'mongodb+srv://arsaluddin134:u3BMhv6QXG2QFkXl@cluster0.y6kyxwq.mongodb.net/';
+// const uri = 'mongodb+srv://arsaluddin134:u3BMhv6QXG2QFkXl@cluster0.y6kyxwq.mongodb.net/';
+const uri = process.env.uri;
 const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 
 async function run() {
