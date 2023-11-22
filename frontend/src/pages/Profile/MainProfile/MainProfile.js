@@ -21,7 +21,7 @@ const MainProfile = ({ user }) => {
   const username = user?.email?.split('@')[0];
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch(`https://pacific-peak-30751.herokuapp.com/userpost?email=${user?.email}`)
+    fetch(`http://localhost:5000/userpost?email=${user?.email}`)
       .then(res => res.json())
       .then(data => {
         setPosts(data);
@@ -47,7 +47,7 @@ const MainProfile = ({ user }) => {
         setIsLoading(false)
 
         if (url) {
-          fetch(`https://pacific-peak-30751.herokuapp.com/userUpdates/${user?.email}`, {
+          fetch(`http://localhost:5000/userUpdates/${user?.email}`, {
             method: "PATCH",
             headers: {
               'content-type': 'application/json'
@@ -86,7 +86,7 @@ const MainProfile = ({ user }) => {
         }
         setIsLoading(false)
         if (url) {
-          fetch(`https://pacific-peak-30751.herokuapp.com/userUpdates/${user?.email}`, {
+          fetch(`http://localhost:5000/userUpdates/${user?.email}`, {
             method: "PATCH",
             headers: {
               'content-type': 'application/json'

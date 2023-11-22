@@ -43,7 +43,7 @@ function TweetBox() {
         e.preventDefault();
 
         if (user?.providerData[0]?.providerId === 'password') {
-            fetch(`https://pacific-peak-30751.herokuapp.com/loggedInUser?email=${email}`)
+            fetch(`http://localhost:5000/loggedInUser?email=${email}`)
                 .then(res => res.json())
                 .then(data => {
                     setName(data[0]?.name)
@@ -67,7 +67,7 @@ function TweetBox() {
             console.log(userPost);
             setPost('')
             setImageURL('')
-            fetch('https://pacific-peak-30751.herokuapp.com/post', {
+            fetch('http://localhost:5000/post', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

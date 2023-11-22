@@ -28,7 +28,7 @@ const Signup = () => {
                 email: email,
             }
 
-            fetch('https://pacific-peak-30751.herokuapp.com/register', {
+            fetch('http://localhost:5000/register', {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json'

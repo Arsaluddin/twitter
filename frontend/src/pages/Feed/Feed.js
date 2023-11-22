@@ -8,7 +8,7 @@ function Feed() {
 
     useEffect(() => {
         
-        fetch('https://pacific-peak-30751.herokuapp.com/post')
+        fetch('http://localhost:5000/post')
             .then(res => res.json())
             .then(data => {
                 setPosts(data);
