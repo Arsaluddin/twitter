@@ -10,7 +10,7 @@
 
 # production
 /build
-firebase.init.js
+firebase.js
 # misc
 .DS_Store
 .env.local
