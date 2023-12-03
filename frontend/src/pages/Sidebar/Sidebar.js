@@ -19,7 +19,7 @@ import { Avatar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import CustomeLink from "./CumtomeLink";
+import CustomeLink from "./CumTomeLink";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { useNavigate } from "react-router-dom";
 

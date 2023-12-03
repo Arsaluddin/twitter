@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import './mainprofile.css';
+import './MainProfile.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddLinkIcon from '@mui/icons-material/AddLink';
-import Post from "./Post/Post"
+import Post from "./post/Post"
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../EditProfile/EditProfile';
 import axios from "axios";
