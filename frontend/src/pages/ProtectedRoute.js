@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import auth from '../context/firebase';
+import { auth } from "../context/firebase";
 import { Navigate } from 'react-router-dom';
 
 function ProtectedRoute({childern}) {
