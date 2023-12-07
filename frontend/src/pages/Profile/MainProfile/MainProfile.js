@@ -5,7 +5,7 @@ import CenterFocusWeakIcon from '@mui/icons-material/CenterFocusWeak';
 import LockResetIcon from '@mui/icons-material/LockReset';
 import MyLocationIcon from '@mui/icons-material/MyLocation';
 import AddLinkIcon from '@mui/icons-material/AddLink';
-import Post from "./post/Post"
+import Post from "./Post/Post"
 import { useNavigate } from 'react-router-dom';
 import EditProfile from '../EditProfile/EditProfile';
 import axios from "axios";
