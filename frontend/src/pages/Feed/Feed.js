@@ -8,7 +8,7 @@ function Feed() {
 
     useEffect(() => {
         
-        fetch('http://localhost:5000/post')
+        fetch('https://twitter-b-5fck.onrender.com/post')
             .then(res => res.json())
             .then(data => {
                 setPosts(data);
