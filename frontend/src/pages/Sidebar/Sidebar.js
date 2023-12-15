@@ -68,6 +68,9 @@ function Sidebar({ handleLogout, user }) {
       <CustomeLink to='/home/more'>
         <SidebarOptions Icon={MoreIcon} text="More" />
       </CustomeLink>
+      <CustomeLink to='/home/bot'>
+        <SidebarOptions Icon={MoreIcon} text="Bot" />
+      </CustomeLink>
       <Button variant="outlined" className="sidebar__tweet" fullWidth>
         Tweet
       </Button>
