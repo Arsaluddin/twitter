@@ -11,12 +11,20 @@ const ChatbotSteps = [
     id: 'userInput',
     user: true,
     trigger: 'programmingAnswer',
+    validator: (value) => {
+      if (!value || value.trim() === '') {
+        return 'Please enter a valid programming-related question.';
+      }
+      return true;
+    },
+    userBegin: true,
   },
   {
     id: 'programmingAnswer',
     message: ({ previousValue }) => {
-        const userInput = (typeof previousValue == '' ? previousValue.trim() : '').toLowerCase();
-
+        // const userInput = (typeof previousValue == '' ? previousValue.trim() : '').toLowerCase();
+        const userInput = previousValue.toLowerCase();
+           console.log(userInput)
         if (!userInput) {
           return 'I didn\'t catch that. Could you please ask a programming-related question?';
         }
@@ -52,7 +60,7 @@ const ChatbotSteps = [
       const response = matchedQuestion
         ? `${matchedQuestion.answer}`
         : 'I\'m sorry, I may not have information on that topic.';
-
+        console.log(response)
       return (
         <div>
           <p>{response}</p>
